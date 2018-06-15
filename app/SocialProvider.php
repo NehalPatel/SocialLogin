@@ -7,7 +7,11 @@ use App\User;
 
 class SocialProvider extends Model
 {
-    public function Users()
+	protected $fillable = [
+        'provider_id', 'provider'
+    ];
+
+    public function User()
     {
     	return $this->belongsTo(User::class);
     }

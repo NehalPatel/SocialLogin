@@ -61,6 +61,33 @@
                             </div>
                         </div>
                     </form>
+
+                    <br />
+                    <div class="social-login">
+                        <div class="row">
+                            <div class="col col-md-4">
+                                <a href="/login/facebook" class="btn btn-block btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+                            </div>
+                            <div class="col col-md-4">
+                                <a href="/login/twitter" class="btn btn-block btn-primary"><i class="fa fa-twitter"></i> Twitter</a>
+                            </div>
+                            <div class="col col-md-4">
+                                <a href="/login/google" class="btn btn-block btn-primary"><i class="fa fa-google"></i> Google</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col col-md-4">
+                                <a href="/login/linkedin" class="btn btn-block btn-primary"><i class="fa fa-linkedin"></i> Linked In</a>
+                            </div>
+                            <div class="col col-md-4">
+                                <a href="/login/github" class="btn btn-block btn-primary"><i class="fa fa-github"></i> Github</a>
+                            </div>
+                            <div class="col col-md-4">
+                                <a href="/login/bitbucket" class="btn btn-block btn-primary"><i class="fa fa-bitbucket"></i> BitBucket</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

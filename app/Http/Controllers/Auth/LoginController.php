@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Socialite;
+
+use App\User;
+use App\SocialProvider;
+
 class LoginController extends Controller
 {
     /*
@@ -52,38 +57,51 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
         try
         {
 
             $socialUser = Socialite::driver($provider)->user();
 
+            \Debugbar::debug($socialUser);
+
+            $socialProvider = SocialProvider::where('provider_id', $socialUser->getId())->first();
+
+            \Debugbar::debug($socialProvider);
+
+            if(!$socialProvider)
+            {
+                $user = User::firstOrCreate(
+                    ['email' => $socialUser->getEmail() ],
+                    ['name' => $socialUser->getName() ]
+                );
+
+                \Debugbar::debug($user);
+
+                $user->socialProvider()->create(
+                    ['provider_id' =>$socialUser->getId(), 'provider' => $provider]
+                );
+
+                \Debugbar::debug($user);
+            }
+            else
+            {
+                $user = $socialProvider->user;
+
+                \Debugbar::debug($user);
+            }
+
+            \Debugbar::debug($user);
+
+            auth()->login($user);
+
         } catch (\Exception $e) {
 
-            return redirect('/');
+            //return redirect('/');
 
+            throw $e;
         }
-
-        $socialProvider = SocialProvider::where('provider_id', $socialUser->getId()->first());
-
-        if(!$socialProvider)
-        {
-            $user = User::firstOrCreate(
-                ['email' => $socialUser->getEmail() ],
-                ['name' => $socialUser->getName() ]
-            );
-
-            $user->socialProvider()->create(
-                ['provider_id' =>$socialUser->getId(), 'provider' => $provider]
-            );
-        }
-        else
-        {
-            $user = $socialProvider->user;
-        }
-
-        auth()->login($user);
 
         return redirect('/home');
     }
