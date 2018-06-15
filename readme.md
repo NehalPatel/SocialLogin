@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/NehalPatel/SocialLogin.svg?branch=master)](https://travis-ci.org/NehalPatel/SocialLogin)
+
+![Github All Releases](https://img.shields.io/github/downloads/NehalPatel/SocialLogin/total.svg)
+
+![license](https://img.shields.io/github/license/NehalPatel/SocialLogin.svg)
 
 
 ## About SocialLogin
